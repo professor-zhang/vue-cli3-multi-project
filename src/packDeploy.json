@@ -1,0 +1,26 @@
+[
+  {
+    "projectName": "index",
+    "title": "主项目",
+    "isPack": true,
+    "isDev": true,
+  },
+  {
+    "projectName": "demo1",
+    "title": "测试项目1",
+    "isPack": true,
+    "isDev": true,
+  },
+  {
+    "projectName": "demo2",
+    "title": "测试项目2",
+    "isPack": true,
+    "isDev": true,
+  },
+  {
+    "projectName": "demo3",
+    "title": "测试项目3",
+    "isPack": true,
+    "isDev": true,
+  }
+]
