@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "node util/config.pro.js"
+    "testBuild": "node config/config.pro.js"
   },
   "dependencies": {
     "core-js": "^3.4.3",

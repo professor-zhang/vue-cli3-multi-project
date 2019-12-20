@@ -1,24 +1,29 @@
-# demo2
+# 多项目使用同一种公用组件单独部署，多项目打包，多项目启动
+    开始使用vue-cli3脚手架搭建的初始项目，更改了src目录下面的文件目录；有一个project的文件夹，里面存放的是你需要打包后的
+    一个项目文件的私有配置；(相当于还是还是一个项目而已只是里面的部分页面是私有的) 本地运行的webpack-server时相当于多页面
+    应用，只是根的模板html文件并没有存在，而是存在于每个项目里面。
 
-## Project setup
-```
-npm install
-```
+# 本地开发
+    本地开发的时候就是一个多页面应用路由可以单独控制，但是前缀必须加上你项目名称(也就是project文件夹下面的文件项目名称)
+# 打包部署
+    打包的时候相当于执行一个循环，多次调用打包命令。我这里暂时没有找到很好的控制打包的进度，而是通过第三方的文件来获取当前
+    打包的进度。
+    用node来控制打包的进度，使用fs与child_process两个模块来控制打包的进度。
+        1.使用node执行config.pro.js的文件(文件里面引用了项目的配置文件(packDeploy.json))
+        2.在这个文件里面先用child_process的execSync创建一个同步的子进程的shell的方法
+        3.循环packDeploy.json文件里面的数据查找出需要打包的页面，然后利用fs模块向第三方的文件(project.js)写入当前打包的
+          页面。写入成功后执行原本的打包命令，就完成一次打包
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 文件说明
+   **config文件夹(打包的配置文件)**
+       
+       config.pro.js---------打包环境的执行
+       project.js------------打包进度的控制
+   **src=>project(打包项目的文件夹)**
+   
+   **src=>packDeploy.json(项目配置文件)**
+   
+        projectName----------项目名称(与project文件夹下面的项目文件夹名称一样)
+        title----------------html文件的title
+        isPack---------------是否打包
+        isDev----------------是否运行
